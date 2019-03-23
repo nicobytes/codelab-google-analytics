@@ -54,7 +54,7 @@ const routes: Routes = [
 
 ```
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136822854-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=xxxxx"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}

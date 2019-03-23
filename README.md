@@ -60,7 +60,7 @@ const routes: Routes = [
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-136822854-1');
+  gtag('config', 'xxxxx');
 </script>
 ```
 
@@ -73,7 +73,7 @@ const navEndEvents$ = this.router.events
 );
 
 navEndEvents$.subscribe((event: NavigationEnd) => {
-  gtag('config', 'UA-136822854-1', {
+  gtag('config', 'xxxxxx', {
     'page_path': event.urlAfterRedirects
   });
 });

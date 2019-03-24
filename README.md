@@ -1,27 +1,80 @@
 # CodelabGoogleAnalytics
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+![Imgur](https://i.imgur.com/a0pURo7.png)
 
-## Development server
+## 1. Create project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+ng new codelab-google-analytics
+```
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 2. Create pages
 
-## Build
+```
+ng g c home
+ng g c about
+ng g c contact
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## 3. Create routing
 
-## Running unit tests
+```
+const routes: Routes = [
+  {
+    path: '', component: HomeComponent
+  },
+  {
+    path: 'about', component: AboutComponent
+  },
+  {
+    path: 'contact', component: ContactComponent
+  }
+];
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+<ul>
+  <li>
+    <h2><a routerLink="/">Home</a></h2>
+  </li>
+  <li>
+    <h2><a routerLink="/about">About</a></h2>
+  </li>
+  <li>
+    <h2><a routerLink="/contact">Contact</a></h2>
+  </li>
+</ul>
 
-## Running end-to-end tests
+<router-outlet></router-outlet>
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
 
-## Further help
+### 3 Add google code
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=xxxxx"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'xxxxx');
+</script>
+```
+
+### 4 Observer navigation ends
+
+```
+const navEndEvents$ = this.router.events
+.pipe(
+  filter(event => event instanceof NavigationEnd)
+);
+
+navEndEvents$.subscribe((event: NavigationEnd) => {
+  gtag('config', 'xxxxxx', {
+    'page_path': event.urlAfterRedirects
+  });
+});
+```
